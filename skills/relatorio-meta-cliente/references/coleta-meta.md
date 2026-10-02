@@ -63,7 +63,7 @@ Cuidados verificados:
      Agrupe por nome do anúncio (somando gasto, compras, valor, cliques e impressões) e use
      o `creative_id` de maior gasto do grupo para a imagem.
    - Muitas campanhas com nomes de código: agrupe por objetivo na tabela de `campanhas`
-     (ex.: "Vendas | Pedidos pelo site (4 campanhas semanais)"), explique em `limitacoes`
+     (ex.: "Vendas | Loja online (4 campanhas semanais)"), explique em `limitacoes`
      e confirme com o gestor na conferência.
 5. `ads_get_creatives` com os `creative_ids` escolhidos → texto e imagem. Baixe a imagem
    (`curl -sL -o <pasta>/criativo-1.jpg "<url>"`, na mesma pasta do `relatorio.json`) e

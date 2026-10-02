@@ -1,0 +1,23 @@
+{
+  "name": "relatorio-meta-cliente",
+  "displayName": "Relatório Meta Ads para Clientes",
+  "version": "1.2.0",
+  "description": "Gera relatórios de Meta Ads para o cliente final em PDF e dashboard HTML com link, na identidade visual do gestor, mais a mensagem pronta para WhatsApp. Feito para só ler os dados do Meta: nunca altera campanhas.",
+  "author": {
+    "name": "Pedro Paz",
+    "url": "https://github.com/pedrolucaslimapaz-cmyk"
+  },
+  "license": "MIT",
+  "keywords": [
+    "meta ads",
+    "facebook ads",
+    "instagram ads",
+    "relatorio",
+    "trafego pago",
+    "gestor de trafego",
+    "whatsapp",
+    "cloudflare pages"
+  ],
+  "homepage": "https://github.com/pedrolucaslimapaz-cmyk/relatorio-meta-cliente",
+  "repository": "https://github.com/pedrolucaslimapaz-cmyk/relatorio-meta-cliente"
+}

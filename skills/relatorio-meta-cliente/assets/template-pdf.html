@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>{{TITULO}}</title>
+{{FONTE_LINK}}
+<!--
+  Template do relatório em PDF (A4). Não edite os dados aqui:
+  montar_relatorio.py substitui {{CSS_VARS}} e {{DADOS_JSON}}; gerar_pdf.py renderiza.
+  Rodapé com paginação vem do gerar_pdf.py (lê a meta "rodape" montada abaixo).
+  Todo texto vindo dos dados é inserido com textContent (nunca innerHTML).
+-->
+<style>
+{{CSS_VARS}}
+@page{size:A4;margin:14mm 14mm 16mm}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--fundo)}
+body{color:var(--texto);font-family:{{FONTE_FAMILIA}}-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.num{font-variant-numeric:tabular-nums}
+.suave{color:var(--texto-suave)}
+.pagina{break-before:page}
+.pagina:first-child{break-before:auto}
+.fluxo{margin-top:4mm}
+h2{break-after:avoid}
+.grade,.criativos,.blocos,table{break-inside:auto}
+.exemplo{border:1.5px dashed var(--destaque);color:var(--texto-suave);text-align:center;font-size:8pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px;margin-bottom:10px;border-radius:6px}
+.topo{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--linha)}
+.topo img{max-height:13mm;max-width:55mm;object-fit:contain;display:block}
+.topo .chip{background:#111318;border-radius:6px;padding:2mm 3mm;display:inline-flex}
+.topo .marca-nome{font-weight:800;font-size:12pt}
+.topo .dir{text-align:right;font-size:8.5pt;color:var(--texto-suave);line-height:1.35}
+.topo .dir b{display:block;color:var(--texto);font-size:9pt;text-transform:uppercase;letter-spacing:.06em}
+.titulo{margin:9mm 0 6mm}
+.titulo h1{font-size:24pt;line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.titulo p{margin-top:2mm;font-size:10.5pt;color:var(--texto-suave)}
+.heroi{background:var(--marca);color:var(--sobre-marca);border-radius:4mm;padding:7mm 8mm;break-inside:avoid}
+.heroi .rot{font-size:9pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;opacity:.85}
+.heroi .val{font-size:34pt;font-weight:800;line-height:1.05;margin-top:2mm;letter-spacing:-.02em}
+.heroi .apoio{margin-top:2.5mm;font-size:10.5pt;max-width:140mm;opacity:.95}
+.delta{display:inline-block;font-size:8pt;font-weight:700;border-radius:99px;padding:1mm 2.5mm;margin-top:2.5mm;background:var(--superficie);color:var(--texto-suave)}
+.delta.bom{color:var(--positivo)}.delta.ruim{color:var(--negativo)}
+.delta small{font-weight:500}
+h2{font-size:9pt;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--texto);margin:8mm 0 3mm;display:flex;align-items:center;gap:2.5mm}
+h2::before{content:"";width:4mm;height:1.2mm;background:var(--destaque);border-radius:1mm;display:inline-block}
+.grade{display:grid;gap:3mm}
+.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.kpi{background:var(--superficie);border-radius:3mm;padding:4mm;break-inside:avoid}
+.kpi .rot{font-size:8.5pt;color:var(--texto-suave);font-weight:600}
+.kpi .val{font-size:16pt;font-weight:800;margin-top:1mm;line-height:1.15}
+.kpi.p .val{font-size:18pt}
+.kpi .nota{font-size:7.5pt;color:var(--texto-suave)}
+.kpi .delta{background:var(--fundo)}
+.resumo{font-size:11pt;font-weight:500;margin-top:7mm;padding-top:5mm;border-top:1px solid var(--linha);break-inside:avoid}
+.graf{background:var(--superficie);border-radius:3mm;padding:4mm;break-inside:avoid}
+.graf .t{font-size:9pt;font-weight:700;display:flex;justify-content:space-between}
+.graf svg{display:block;width:100%;height:auto;margin-top:2mm}
+table{width:100%;border-collapse:collapse;font-size:9pt}
+th{text-align:left;font-size:7.5pt;text-transform:uppercase;letter-spacing:.06em;color:var(--texto-suave);font-weight:700;padding:0 2mm 2mm 0;border-bottom:1px solid var(--linha)}
+td{padding:2.5mm 2mm 2.5mm 0;border-bottom:1px solid var(--linha);vertical-align:top}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr{break-inside:avoid}
+.part{height:1.2mm;background:var(--linha);border-radius:1mm;margin-top:1.5mm;width:40mm}
+.part i{display:block;height:100%;background:var(--destaque);border-radius:1mm}
+.criativos{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+.cri{background:var(--superficie);border-radius:3mm;overflow:hidden;break-inside:avoid}
+.cri .img{aspect-ratio:1/1;background:var(--linha);display:flex;align-items:center;justify-content:center;padding:3mm;font-size:8pt;color:var(--texto-suave);text-align:center}
+.cri .img img{width:100%;height:100%;object-fit:cover;display:block}
+.cri .img.tem{padding:0}
+.cri .c{padding:3mm}
+.cri .selo{font-size:7pt;font-weight:800;color:var(--destaque);text-transform:uppercase;letter-spacing:.06em}
+.cri .nome{font-weight:700;font-size:8.5pt;overflow-wrap:anywhere}
+.cri dl{display:grid;grid-template-columns:1fr auto;gap:.8mm 2mm;margin-top:2mm;font-size:7.5pt}
+.cri dt{color:var(--texto-suave)}.cri dd{font-weight:700;text-align:right}
+.pub{background:var(--superficie);border-radius:3mm;padding:4mm;break-inside:avoid}
+.pub h3{font-size:9pt;font-weight:700;margin-bottom:2mm}
+.pub .l{display:grid;grid-template-columns:30mm 1fr 10mm;gap:2mm;align-items:center;font-size:8pt;margin-top:1.5mm}
+.pub .b{height:2mm;background:var(--linha);border-radius:1mm;overflow:hidden}
+.pub .b i{display:block;height:100%;background:var(--destaque)}
+.leitura p{font-size:10.5pt}
+.blocos{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:4mm}
+.bloco{background:var(--superficie);border-radius:3mm;padding:4mm;break-inside:avoid}
+.bloco h3{font-size:9pt;font-weight:800;margin-bottom:2mm}
+.bloco ul{list-style:none;display:flex;flex-direction:column;gap:1.8mm}
+.bloco li{font-size:9pt;padding-left:3.5mm;position:relative}
+.bloco li::before{content:"";position:absolute;left:0;top:.55em;width:1.6mm;height:1.6mm;border-radius:.4mm;background:var(--destaque)}
+.bloco.nao li::before{background:var(--texto-suave)}
+.alt{list-style:none;font-size:9pt;display:flex;flex-direction:column;gap:1.5mm}
+.alt li{display:grid;grid-template-columns:14mm 1fr}
+.lim{font-size:8.5pt;color:var(--texto-suave);margin-left:4mm;display:flex;flex-direction:column;gap:1mm}
+.fim{margin-top:8mm;padding-top:4mm;border-top:1px solid var(--linha);font-size:8.5pt;color:var(--texto-suave)}
+.fim b{color:var(--texto)}
+</style>
+</head>
+<body>
+<div id="doc"></div>
+<script id="dados" type="application/json">{{DADOS_JSON}}</script>
+<script>
+(function(){
+"use strict";
+var D=JSON.parse(document.getElementById("dados").textContent);
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function add(p){for(var i=1;i<arguments.length;i++){var c=arguments[i];if(c)p.appendChild(c);}return p;}
+var SIM={BRL:"R$",USD:"US$",EUR:"€"};
+function fmt(v,tipo,moeda){if(v==null)return "—";var o=tipo==="moeda"?{minimumFractionDigits:2,maximumFractionDigits:2}:{maximumFractionDigits:0};
+  var s=new Intl.NumberFormat("pt-BR",o).format(v);return tipo==="moeda"?(SIM[moeda]||moeda)+"\u00a0"+s:s;}
+function delta(d){if(!d)return null;var c=el("span","delta"+(d.bom===true?" bom":d.bom===false?" ruim":""),d.texto+" ");
+  if(D.comparado_com)c.appendChild(el("small",null,"vs. "+D.comparado_com));return c;}
+function kpi(m,p){var c=el("div","kpi"+(p?" p":""));add(c,el("div","rot",m.rotulo),el("div","val num",m.fmt),m.nota?el("div","nota",m.nota):null,delta(m.delta));return c;}
+
+var paginas=[];
+function pagina(){var p=el("div","pagina");paginas.push(p);return p;}
+function fluxo(){var p=el("div","fluxo");paginas.push(p);return p;}
+
+// rodapé para o gerar_pdf.py
+var meta=document.createElement("meta");meta.name="rodape";
+meta.content=[D.marca.nome,D.cliente,D.periodo].filter(Boolean).join("  ·  ");document.head.appendChild(meta);
+
+// ---------- página 1: capa + resumo
+var p1=pagina();
+if(D.exemplo)p1.appendChild(el("div","exemplo","Prévia com dados de exemplo"));
+var topo=el("div","topo"),esq=el("div");
+if(D.marca.logo){var img=el("img");img.src=D.marca.logo;img.alt=D.marca.nome||"Logo";
+  if(D.marca.logo_fundo==="escuro"){var ch=el("span","chip");ch.appendChild(img);esq.appendChild(ch);}else esq.appendChild(img);}
+else if(D.marca.nome)esq.appendChild(el("div","marca-nome",D.marca.nome));
+var dir=el("div","dir");add(dir,el("b",null,D.tipo),el("span",null,"Meta Ads · "+D.foco_rotulo));
+add(topo,esq,dir);p1.appendChild(topo);
+var tt=el("div","titulo");add(tt,el("h1",null,D.cliente||"Relatório de anúncios"),el("p",null,D.periodo+(D.datas?"  ·  "+D.datas:"")+(D.campanha?"  ·  Campanha: "+D.campanha:"")));
+p1.appendChild(tt);
+var h=D.heroi,hc=el("div","heroi");
+add(hc,el("div","rot",h.rotulo+(h.nota&&h.chave!=="alcance"?" · "+h.nota:"")),el("div","val num",h.fmt),h.apoio?el("div","apoio",h.apoio):null,delta(h.delta));
+p1.appendChild(hc);
+var pr=D.principais.filter(function(m){return m.chave!==h.chave;});
+if(pr.length){p1.appendChild(el("h2",null,"Números principais"));var g=el("div","grade g3");pr.forEach(function(m){g.appendChild(kpi(m,true));});p1.appendChild(g);}
+if(D.cac){p1.appendChild(el("h2",null,"CAC: mídia × real"));var gc=el("div","grade g2");
+  var a=el("div","kpi p");add(a,el("div","rot","CAC de mídia"),el("div","val num",D.cac.midia),el("div","nota",D.cac.vendas_meta+" vendas atribuídas pelo Meta"));
+  var b=el("div","kpi p");add(b,el("div","rot","CAC real"),el("div","val num",D.cac.real),el("div","nota",D.cac.vendas_reais+" vendas informadas"));
+  add(gc,a,b);p1.appendChild(gc);}
+var sec=D.secundarias.filter(function(m){return m.chave!==h.chave;});
+if(sec.length){p1.appendChild(el("h2",null,"Outros indicadores"));var g2=el("div","grade g3");sec.forEach(function(m){g2.appendChild(kpi(m));});p1.appendChild(g2);}
+if(D.leitura&&D.leitura.resumo)p1.appendChild(el("div","resumo",D.leitura.resumo));
+
+// ---------- página 2: evolução + campanhas
+var temP2=D.serie||D.campanhas.length>1;
+if(temP2){
+  var p2=pagina();
+  if(D.serie){
+    p2.appendChild(el("h2",null,{semana:"Evolução semana a semana",mes:"Evolução mês a mês"}[D.serie.granularidade]||"Evolução dia a dia"));
+    var gg=el("div","grade "+(D.serie.resultados?"g2":""));
+    function graf(nome,vals,tipo){
+      var c=el("div","graf"),v=vals.map(function(x){return x||0;}),n=v.length,max=Math.max.apply(null,v)||1,tot=v.reduce(function(a,b){return a+b;},0);
+      var t=el("div","t");add(t,el("span",null,nome),el("span","num suave","Total: "+fmt(tot,tipo,D.serie.moeda)));c.appendChild(t);
+      var W=300,H=130,pb=14,pt=12,gap=n>40?.6:n>20?1.2:2.5,bw=(W-gap*(n-1))/n,ns="http://www.w3.org/2000/svg",svg=document.createElementNS(ns,"svg");
+      svg.setAttribute("viewBox","0 0 "+W+" "+H);
+      v.forEach(function(x,j){var hh=Math.max(x>0?1:0,(H-pb-pt)*x/max),r=document.createElementNS(ns,"rect");
+        r.setAttribute("x",j*(bw+gap));r.setAttribute("y",H-pb-hh);r.setAttribute("width",Math.max(.6,bw));r.setAttribute("height",hh);r.setAttribute("rx",Math.min(1.5,bw/3));r.setAttribute("fill","var(--destaque)");svg.appendChild(r);});
+      var im=v.indexOf(max),tm=document.createElementNS(ns,"text");tm.textContent=fmt(max,tipo,D.serie.moeda);tm.setAttribute("font-size","8");tm.setAttribute("fill","var(--texto-suave)");
+      var xm=im*(bw+gap)+bw/2;tm.setAttribute("x",Math.min(Math.max(xm,0),W));tm.setAttribute("text-anchor",xm<40?"start":xm>W-40?"end":"middle");tm.setAttribute("y",pt-3);svg.appendChild(tm);
+      [0,n-1].forEach(function(j,k){var d=D.serie.datas[j],tx=document.createElementNS(ns,"text");tx.textContent=d.slice(8,10)+"/"+d.slice(5,7);
+        tx.setAttribute("x",k?W:0);tx.setAttribute("text-anchor",k?"end":"start");tx.setAttribute("y",H-2);tx.setAttribute("font-size","8");tx.setAttribute("fill","var(--texto-suave)");svg.appendChild(tx);});
+      c.appendChild(svg);return c;}
+    if(D.serie.resultados)gg.appendChild(graf(D.serie.rotulo_resultado,D.serie.resultados,"int"));
+    gg.appendChild(graf("Investimento",D.serie.investimento,"moeda"));
+    p2.appendChild(gg);
+  }
+  if(D.campanhas.length){
+    p2.appendChild(el("h2",null,D.campanhas.length>1?"Campanhas":"Campanha"));
+    var tb=el("table"),th=el("tr"),comRoas=D.campanhas.some(function(c){return c.roas;});
+    [["Campanha",""],["Investimento","n"],["Resultados","n"],["Custo por resultado","n"]].concat(comRoas?[["ROAS","n"]]:[]).forEach(function(x){th.appendChild(el("th",x[1],x[0]));});
+    tb.appendChild(th);
+    D.campanhas.forEach(function(c){var tr=el("tr"),n=el("td");n.appendChild(el("div",null,c.nome));
+      if(D.campanhas.length>1){var pp=el("div","part"),pi=el("i");pi.style.width=(c.participacao*100).toFixed(1)+"%";pp.appendChild(pi);n.appendChild(pp);}
+      add(tr,n,el("td","n num",c.investimento),el("td","n num",c.resultados),el("td","n num",c.custo),comRoas?el("td","n num",c.roas||"—"):null);tb.appendChild(tr);});
+    p2.appendChild(tb);
+  }
+}else if(D.campanhas.length){ /* uma campanha só: já está no título */ }
+
+// ---------- página 3: criativos + público
+if(D.criativos.length||D.publico.length){
+  var p3=temP2?fluxo():pagina();
+  if(D.criativos.length){p3.appendChild(el("h2",null,"Criativos"));var gcr=el("div","criativos");
+    D.criativos.slice(0,3).forEach(function(c){var k=el("div","cri"),im=el("div","img"+(c.imagem?" tem":""));
+      if(c.imagem){var i=el("img");i.src=c.imagem;i.alt=c.nome||"";im.appendChild(i);}else im.textContent=c.descricao||"Imagem não disponível";
+      var cc=el("div","c");if(c.selo)cc.appendChild(el("div","selo",c.selo));cc.appendChild(el("div","nome",c.nome));
+      var dl=el("dl");c.metricas.forEach(function(p){add(dl,el("dt",null,p[0]),el("dd","num",p[1]));});cc.appendChild(dl);add(k,im,cc);gcr.appendChild(k);});
+    p3.appendChild(gcr);}
+  if(D.publico.length){p3.appendChild(el("h2",null,"Quem respondeu aos anúncios"));var gp=el("div","grade g2");
+    D.publico.forEach(function(b){var c=el("div","pub");c.appendChild(el("h3",null,b.titulo));
+      b.itens.forEach(function(i){var l=el("div","l"),br=el("div","b"),bi=el("i");bi.style.width=(i.pct*100).toFixed(1)+"%";br.appendChild(bi);
+        add(l,el("span",null,i.rotulo),br,el("span","num suave",Math.round(i.pct*100)+"%"));c.appendChild(l);});gp.appendChild(c);});
+    p3.appendChild(gp);p3.appendChild(el("p","suave","Participação de cada grupo em "+(D.publico[0].metrica||"resultados").toLowerCase()+"."));}
+}
+
+// ---------- página 4: leitura + limitações
+var p4=paginas.length>1?fluxo():pagina(),L=D.leitura||{};
+var bl=el("div","blocos");
+[["O que funcionou",L.funcionou,""],["O que não funcionou",L.nao_funcionou,"nao"],["Próximos passos",L.proximos_passos,""]].forEach(function(b){
+  if(!b[1]||!b[1].length)return;var c=el("div","bloco "+b[2]);c.appendChild(el("h3",null,b[0]));var ul=el("ul");b[1].forEach(function(x){ul.appendChild(el("li",null,x));});c.appendChild(ul);bl.appendChild(c);});
+if(bl.children.length){p4.appendChild(el("h2",null,"Leitura do período"));bl.style.gridTemplateColumns="repeat("+bl.children.length+",1fr)";p4.appendChild(bl);}
+if(D.alteracoes.length){p4.appendChild(el("h2",null,"O que mudou nas campanhas"));var ua=el("ul","alt");
+  D.alteracoes.forEach(function(a){var li=el("li"),d=a.data||"";add(li,el("span","suave num",d.length>=10?d.slice(8,10)+"/"+d.slice(5,7):d),el("span",null,a.descricao));ua.appendChild(li);});p4.appendChild(ua);}
+p4.appendChild(el("h2",null,"Sobre estes dados"));
+var ul=el("ul","lim");
+if(D.aviso_atribuicao)ul.appendChild(el("li",null,D.aviso_atribuicao));
+D.limitacoes.forEach(function(x){ul.appendChild(el("li",null,x));});
+if(D.mostra_alcance)ul.appendChild(el("li",null,"Alcance é contado em contas da Meta, não em pessoas."));
+p4.appendChild(ul);
+var fim=el("div","fim");
+if(D.marca.nome){var fb=el("div");fb.appendChild(el("b",null,D.marca.nome));if(D.marca.responsavel)fb.appendChild(document.createTextNode(" · "+D.marca.responsavel));fim.appendChild(fb);}
+if(D.marca.contato)fim.appendChild(el("div",null,D.marca.contato));
+if(D.marca.rodape)fim.appendChild(el("div",null,D.marca.rodape));
+fim.appendChild(el("div",null,"Fonte: "+D.fonte+" · gerado em "+D.gerado_em));
+p4.appendChild(fim);
+
+var doc=document.getElementById("doc");paginas.forEach(function(p){doc.appendChild(p);});
+window.__pronto=true;
+})();
+</script>
+</body>
+</html>

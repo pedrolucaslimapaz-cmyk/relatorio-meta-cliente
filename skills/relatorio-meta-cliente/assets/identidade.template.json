@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "marca": "",
+  "responsavel": "",
+  "contato": {
+    "whatsapp": "",
+    "email": "",
+    "instagram": "",
+    "site": ""
+  },
+  "rodape": "",
+  "logo": null,
+  "logo_fundo": "auto",
+  "cores_aprovadas": false,
+  "aprovada": false,
+  "cores": {
+    "marca": "#1F2937",
+    "sobre_marca": "#FFFFFF",
+    "positivo": "#15803D",
+    "negativo": "#B42318",
+    "pdf": {
+      "fundo": "#FFFFFF",
+      "superficie": "#F4F5F7",
+      "texto": "#14161A",
+      "texto_suave": "#5E6470",
+      "linha": "#E2E4E8",
+      "destaque": "#2563EB"
+    },
+    "html": {
+      "fundo": "#0E1015",
+      "superficie": "#181B22",
+      "texto": "#F3F4F6",
+      "texto_suave": "#A0A6B2",
+      "linha": "#2A2E37",
+      "destaque": "#60A5FA"
+    }
+  },
+  "fonte_google": null,
+  "html": {
+    "tema": "escuro"
+  }
+}

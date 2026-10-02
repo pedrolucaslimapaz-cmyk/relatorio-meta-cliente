@@ -1,0 +1,350 @@
+{
+  "schema": 1,
+  "exemplo": true,
+  "fonte": "meta_mcp",
+  "cliente": "Loja Exemplo",
+  "contato_cliente": "Ana",
+  "conta": {
+    "id": "act_000000000",
+    "nome": "Loja Exemplo - Conta"
+  },
+  "periodo": {
+    "tipo": "mensal",
+    "inicio": "2026-06-01",
+    "fim": "2026-06-30",
+    "rotulo": "Junho de 2026",
+    "campanha": null
+  },
+  "foco": "vendas",
+  "moeda": "BRL",
+  "desempenho": "acima",
+  "totais": {
+    "investimento": 2890.09,
+    "impressoes": 184320,
+    "alcance": 61240,
+    "cliques_link": 3105,
+    "compras": 77,
+    "valor_compras": 12664.72,
+    "thruplays": 12880
+  },
+  "anterior": {
+    "rotulo": "maio",
+    "investimento": 2890.4,
+    "impressoes": 171200,
+    "alcance": 58810,
+    "cliques_link": 2640,
+    "compras": 61,
+    "valor_compras": 9310.2
+  },
+  "serie_diaria": [
+    {
+      "data": "2026-06-01",
+      "investimento": 97.66,
+      "compras": 2,
+      "valor_compras": 345.09
+    },
+    {
+      "data": "2026-06-02",
+      "investimento": 98.43,
+      "compras": 3,
+      "valor_compras": 474.85
+    },
+    {
+      "data": "2026-06-03",
+      "investimento": 103.2,
+      "compras": 3,
+      "valor_compras": 425.62
+    },
+    {
+      "data": "2026-06-04",
+      "investimento": 114.71,
+      "compras": 2,
+      "valor_compras": 289.07
+    },
+    {
+      "data": "2026-06-05",
+      "investimento": 117.21,
+      "compras": 4,
+      "valor_compras": 584.76
+    },
+    {
+      "data": "2026-06-06",
+      "investimento": 114.4,
+      "compras": 4,
+      "valor_compras": 749.54
+    },
+    {
+      "data": "2026-06-07",
+      "investimento": 121.14,
+      "compras": 3,
+      "valor_compras": 566.44
+    },
+    {
+      "data": "2026-06-08",
+      "investimento": 108.66,
+      "compras": 4,
+      "valor_compras": 617.92
+    },
+    {
+      "data": "2026-06-09",
+      "investimento": 107.34,
+      "compras": 2,
+      "valor_compras": 310.85
+    },
+    {
+      "data": "2026-06-10",
+      "investimento": 116.28,
+      "compras": 2,
+      "valor_compras": 338.16
+    },
+    {
+      "data": "2026-06-11",
+      "investimento": 107.32,
+      "compras": 3,
+      "valor_compras": 502.16
+    },
+    {
+      "data": "2026-06-12",
+      "investimento": 89.78,
+      "compras": 1,
+      "valor_compras": 150.3
+    },
+    {
+      "data": "2026-06-13",
+      "investimento": 95.9,
+      "compras": 3,
+      "valor_compras": 467.12
+    },
+    {
+      "data": "2026-06-14",
+      "investimento": 87.94,
+      "compras": 2,
+      "valor_compras": 309.98
+    },
+    {
+      "data": "2026-06-15",
+      "investimento": 86.6,
+      "compras": 3,
+      "valor_compras": 456.61
+    },
+    {
+      "data": "2026-06-16",
+      "investimento": 77.57,
+      "compras": 2,
+      "valor_compras": 367.51
+    },
+    {
+      "data": "2026-06-17",
+      "investimento": 77.21,
+      "compras": 2,
+      "valor_compras": 378.02
+    },
+    {
+      "data": "2026-06-18",
+      "investimento": 62.92,
+      "compras": 2,
+      "valor_compras": 355.71
+    },
+    {
+      "data": "2026-06-19",
+      "investimento": 63.06,
+      "compras": 2,
+      "valor_compras": 283.92
+    },
+    {
+      "data": "2026-06-20",
+      "investimento": 74.39,
+      "compras": 3,
+      "valor_compras": 505.95
+    },
+    {
+      "data": "2026-06-21",
+      "investimento": 81.04,
+      "compras": 2,
+      "valor_compras": 349.53
+    },
+    {
+      "data": "2026-06-22",
+      "investimento": 79.25,
+      "compras": 3,
+      "valor_compras": 488.43
+    },
+    {
+      "data": "2026-06-23",
+      "investimento": 89.09,
+      "compras": 4,
+      "valor_compras": 654.82
+    },
+    {
+      "data": "2026-06-24",
+      "investimento": 91.3,
+      "compras": 1,
+      "valor_compras": 175.07
+    },
+    {
+      "data": "2026-06-25",
+      "investimento": 97.11,
+      "compras": 4,
+      "valor_compras": 724.38
+    },
+    {
+      "data": "2026-06-26",
+      "investimento": 96.07,
+      "compras": 2,
+      "valor_compras": 346.87
+    },
+    {
+      "data": "2026-06-27",
+      "investimento": 96.7,
+      "compras": 3,
+      "valor_compras": 445.21
+    },
+    {
+      "data": "2026-06-28",
+      "investimento": 103.77,
+      "compras": 2,
+      "valor_compras": 356.82
+    },
+    {
+      "data": "2026-06-29",
+      "investimento": 108.16,
+      "compras": 2,
+      "valor_compras": 319.09
+    },
+    {
+      "data": "2026-06-30",
+      "investimento": 125.88,
+      "compras": 2,
+      "valor_compras": 324.92
+    }
+  ],
+  "campanhas": [
+    {
+      "nome": "Vendas | Coleção Inverno",
+      "investimento": 1791.86,
+      "compras": 51,
+      "valor_compras": 8612.01
+    },
+    {
+      "nome": "Remarketing | Carrinho abandonado",
+      "investimento": 664.72,
+      "compras": 21,
+      "valor_compras": 3292.83
+    },
+    {
+      "nome": "Tráfego | Instagram",
+      "investimento": 433.51,
+      "compras": 5,
+      "valor_compras": 759.88
+    }
+  ],
+  "criativos": [
+    {
+      "nome": "Vídeo provador 15s",
+      "selo": "Melhor custo por venda",
+      "descricao": "Vídeo vertical mostrando três looks no provador.",
+      "investimento": 820.5,
+      "compras": 31,
+      "ctr": 2.1
+    },
+    {
+      "nome": "Carrossel frete grátis",
+      "descricao": "Carrossel com 5 peças e selo de frete grátis.",
+      "investimento": 640.1,
+      "compras": 19,
+      "ctr": 1.6
+    },
+    {
+      "nome": "Foto estática vitrine",
+      "descricao": "Foto da vitrine com preço em destaque.",
+      "investimento": 410.0,
+      "compras": 6,
+      "ctr": 0.8
+    }
+  ],
+  "publico": {
+    "metrica": "Vendas",
+    "idade": [
+      {
+        "rotulo": "18-24",
+        "valor": 9
+      },
+      {
+        "rotulo": "25-34",
+        "valor": 31
+      },
+      {
+        "rotulo": "35-44",
+        "valor": 24
+      },
+      {
+        "rotulo": "45-54",
+        "valor": 11
+      },
+      {
+        "rotulo": "55+",
+        "valor": 4
+      }
+    ],
+    "genero": [
+      {
+        "rotulo": "Mulheres",
+        "valor": 58
+      },
+      {
+        "rotulo": "Homens",
+        "valor": 19
+      },
+      {
+        "rotulo": "Não informado",
+        "valor": 2
+      }
+    ],
+    "posicionamento": [
+      {
+        "rotulo": "Reels do Instagram",
+        "valor": 34
+      },
+      {
+        "rotulo": "Feed do Instagram",
+        "valor": 22
+      },
+      {
+        "rotulo": "Stories",
+        "valor": 15
+      },
+      {
+        "rotulo": "Feed do Facebook",
+        "valor": 8
+      }
+    ]
+  },
+  "alteracoes": [
+    {
+      "data": "2026-06-10",
+      "descricao": "Orçamento da campanha Coleção Inverno aumentado de R$ 60 para R$ 80 por dia."
+    },
+    {
+      "data": "2026-06-18",
+      "descricao": "Criativo 'Foto estática vitrine' pausado."
+    }
+  ],
+  "leitura": {
+    "resumo": "Junho fechou com mais vendas e custo por venda menor que maio. O vídeo no provador puxou o resultado e o remarketing recuperou carrinhos a um custo baixo.",
+    "funcionou": [
+      "Vídeo curto no provador: menor custo por venda do mês.",
+      "Remarketing de carrinho abandonado com retorno alto."
+    ],
+    "nao_funcionou": [
+      "Foto estática da vitrine: poucos cliques e vendas caras, por isso foi pausada."
+    ],
+    "proximos_passos": [
+      "Gravar mais dois vídeos no formato provador.",
+      "Manter o remarketing ligado o mês todo."
+    ]
+  },
+  "limitacoes": [
+    "Dados de exemplo, apenas para visualizar o layout."
+  ],
+  "atualizado_ate": "2026-06-30"
+}

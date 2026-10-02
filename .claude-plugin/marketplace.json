@@ -1,0 +1,14 @@
+{
+  "name": "relatorio-meta-cliente",
+  "description": "Relatórios de Meta Ads para clientes de gestores de tráfego.",
+  "owner": {
+    "name": "Pedro Paz"
+  },
+  "plugins": [
+    {
+      "name": "relatorio-meta-cliente",
+      "source": "./",
+      "description": "Relatórios de Meta Ads para clientes em PDF e dashboard HTML, com mensagem para WhatsApp."
+    }
+  ]
+}
